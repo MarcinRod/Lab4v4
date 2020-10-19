@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Lab4v4</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="describe_msg">Describe the task</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="taskPositionKey">taskPosition</string>
+    <string name="taskTitleKey">taskTitle</string>
+    <string name="taskDescriptionKey">taskDecription</string>
+</resources>
