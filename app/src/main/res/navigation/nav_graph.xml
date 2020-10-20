@@ -19,10 +19,6 @@
         android:name="com.example.lab4v4.DisplayTaskFragment"
         android:label="fragment_display_task"
         tools:layout="@layout/fragment_display_task" >
-        <argument
-            android:name="taskPosition"
-            app:argType="integer"
-            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
@@ -35,13 +31,5 @@
         <action
             android:id="@+id/action_taskFragment_to_displayTaskFragment"
             app:destination="@id/displayTaskFragment" />
-        <argument
-            android:name="Title"
-            app:argType="string"
-            android:defaultValue="Task title" />
-        <argument
-            android:name="Task description"
-            app:argType="string"
-            android:defaultValue="description" />
     </fragment>
 </navigation>

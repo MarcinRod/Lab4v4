@@ -43,6 +43,7 @@ public class AddTaskFragment extends Fragment {
         view.findViewById(R.id.cancelButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //NavHostFragment.findNavController(AddTaskFragment.this).popBackStack();
                 NavHostFragment.findNavController(AddTaskFragment.this)
                         .navigate(R.id.action_addTaskFragment_to_taskFragment);
             }
@@ -63,6 +64,14 @@ public class AddTaskFragment extends Fragment {
                         description);
                 NavHostFragment.findNavController(AddTaskFragment.this)
                         .navigate(R.id.action_addTaskFragment_to_taskFragment,bundle);
+               /* AddTaskFragmentDirections.ActionAddTaskFragmentToTaskFragment addTaskAction = AddTaskFragmentDirections.actionAddTaskFragmentToTaskFragment();
+                addTaskAction.setValidTaskArg(true);
+                addTaskAction.setTitleArg(title);
+                addTaskAction.setTaskDescriptionArg(description);
+                NavHostFragment.findNavController(AddTaskFragment.this)
+                        .navigate(addTaskAction);
+                //TaskFragmentDirections
+           //     AddTaskFragmentDirections*/
             }
         });
         return view;

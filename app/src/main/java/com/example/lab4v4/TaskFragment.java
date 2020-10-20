@@ -1,9 +1,11 @@
 package com.example.lab4v4;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +17,8 @@ import android.view.ViewGroup;
 
 import com.example.lab4v4.dummy.TasksContent;
 
+import java.util.List;
+
 /**
  * A fragment representing a list of Items.
  */
@@ -23,7 +27,7 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 1;
+    private int mColumnCount = 2;
     MyTaskRecyclerViewAdapter myTaskRecyclerViewAdapter;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -47,7 +51,7 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
         super.onCreate(savedInstanceState);
 
         if(getArguments() != null) {
-            mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
+        //    mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
     }
 
@@ -63,6 +67,7 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
                         arguments.getString(getString(R.string.taskDescriptionKey))));
             }
         }
+
         // Set the adapter
         RecyclerView recyclerView = view.findViewById(R.id.list);
         if(recyclerView instanceof RecyclerView) {
@@ -94,7 +99,14 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
     public void onClickEvent(int position) {
         Bundle bundle = new Bundle();
         bundle.putInt(getString(R.string.taskPositionKey),position);
-        NavHostFragment.findNavController(TaskFragment.this)
-                .navigate(R.id.action_taskFragment_to_displayTaskFragment,bundle);
+        if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            NavHostFragment.findNavController(TaskFragment.this)
+                    .navigate(R.id.action_taskFragment_to_displayTaskFragment, bundle);
+        }else{
+            FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
+            List<Fragment> fragments = supportFragmentManager.getFragments();
+            DisplayTaskFragment fragmentById = (DisplayTaskFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.displayFragment);
+            fragmentById.displayTask(position);
+        }
     }
 }

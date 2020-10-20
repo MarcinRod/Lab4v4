@@ -23,7 +23,7 @@ public class TasksContent {
      */
     public static final Map<String, TaskItem> ITEM_MAP = new HashMap<String, TaskItem>();
 
-    private static final int COUNT = 25;
+    private static final int COUNT = 5;
 
     static {
         // Add some sample items.

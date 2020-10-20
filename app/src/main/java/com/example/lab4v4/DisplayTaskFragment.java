@@ -43,13 +43,16 @@ public class DisplayTaskFragment extends Fragment {
         if(arguments!= null){
             if(arguments.containsKey(getString(R.string.taskPositionKey))){
                 int position = arguments.getInt(getString(R.string.taskPositionKey));
-                TasksContent.TaskItem task = TasksContent.getItem(position);
-                TextView taskTitle = view.findViewById(R.id.dispTaskTitle);
-                TextView taskDescription = view.findViewById(R.id.dispTaskDescription);
-                taskTitle.setText(task.title);
-                taskDescription.setText(task.description);
+                displayTask(position);
             }
         }
         return view;
+    }
+    public void displayTask(int position){
+        TextView taskTitle = getActivity().findViewById(R.id.dispTaskTitle);
+        TextView taskDescription = getActivity().findViewById(R.id.dispTaskDescription);
+        TasksContent.TaskItem task = TasksContent.getItem(position);
+        taskTitle.setText(task.title);
+        taskDescription.setText(task.description);
     }
 }
