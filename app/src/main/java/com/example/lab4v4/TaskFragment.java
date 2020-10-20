@@ -58,15 +58,15 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
         Bundle arguments = getArguments();
         if(arguments!= null){
             if(arguments.containsKey(getString(R.string.taskTitleKey))){
-                TasksContent.addItem(new TasksContent.TaskItem(String.valueOf(TasksContent.ITEMS.size()),
+                TasksContent.addItem(new TasksContent.TaskItem(String.valueOf(TasksContent.ITEMS.size()+1),
                         arguments.getString(getString(R.string.taskTitleKey)),
                         arguments.getString(getString(R.string.taskDescriptionKey))));
             }
         }
         // Set the adapter
-        if(view instanceof RecyclerView) {
+        RecyclerView recyclerView = view.findViewById(R.id.list);
+        if(recyclerView instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
             if(mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {

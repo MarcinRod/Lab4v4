@@ -44,20 +44,25 @@ public class AddTaskFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(AddTaskFragment.this)
-                        .navigate(R.id.action_taskFragment_to_addTaskFragment);
+                        .navigate(R.id.action_addTaskFragment_to_taskFragment);
             }
         });
         view.findViewById(R.id.addButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
-
+                String title = ((EditText) view.findViewById(R.id.task_title)).getText().toString();
+                String description = ((EditText) view.findViewById(R.id.task_description)).getText().toString();
+                if(title.isEmpty())
+                    title = "Task";
+                if(description.isEmpty())
+                    description = "My task description";
                 bundle.putString(getString(R.string.taskTitleKey),
-                        ((EditText)view.findViewById(R.id.task_title)).getText().toString());
+                        title);
                 bundle.putString(getString(R.string.taskDescriptionKey),
-                        ((EditText)view.findViewById(R.id.task_description)).getText().toString());
+                        description);
                 NavHostFragment.findNavController(AddTaskFragment.this)
-                        .navigate(R.id.action_taskFragment_to_addTaskFragment,bundle);
+                        .navigate(R.id.action_addTaskFragment_to_taskFragment,bundle);
             }
         });
         return view;
