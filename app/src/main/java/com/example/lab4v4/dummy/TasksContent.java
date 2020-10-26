@@ -52,6 +52,12 @@ public class TasksContent {
         return builder.toString();
     }
 
+    public static void removeItem(int currentItemPosition) {
+        String id = ITEMS.get(currentItemPosition).id;
+        ITEMS.remove(currentItemPosition);
+        ITEM_MAP.remove(id);
+    }
+
     /**
      * A dummy item representing a piece of content.
      */
@@ -59,13 +65,20 @@ public class TasksContent {
         public final String id;
         public final String title;
         public final String description;
+        public final String picPath;
 
         public TaskItem(String id, String title, String description) {
             this.id = id;
             this.title = title;
             this.description = description;
+            this.picPath = "";
         }
-
+        public TaskItem(String id, String title, String description, String pic) {
+            this.id = id;
+            this.title = title;
+            this.description = description;
+            this.picPath = pic;
+        }
         @Override
         public String toString() {
             return title;

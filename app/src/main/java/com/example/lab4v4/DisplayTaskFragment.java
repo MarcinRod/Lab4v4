@@ -1,5 +1,7 @@
 package com.example.lab4v4;
 
+import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.lab4v4.dummy.TasksContent;
@@ -17,7 +20,9 @@ import com.example.lab4v4.dummy.TasksContent;
  * create an instance of this fragment.
  */
 public class DisplayTaskFragment extends Fragment {
-
+    TextView taskTitle;
+    TextView taskDescription;
+    ImageView taskImage;
     public DisplayTaskFragment() {
         // Required empty public constructor
     }
@@ -39,6 +44,9 @@ public class DisplayTaskFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_display_task, container, false);
+        taskTitle = view.findViewById(R.id.dispTaskTitle);
+        taskDescription = view.findViewById(R.id.dispTaskDescription);
+        taskImage = view.findViewById(R.id.taskImageView);
         Bundle arguments = getArguments();
         if(arguments!= null){
             if(arguments.containsKey(getString(R.string.taskPositionKey))){
@@ -49,10 +57,28 @@ public class DisplayTaskFragment extends Fragment {
         return view;
     }
     public void displayTask(int position){
-        TextView taskTitle = getActivity().findViewById(R.id.dispTaskTitle);
-        TextView taskDescription = getActivity().findViewById(R.id.dispTaskDescription);
+
         TasksContent.TaskItem task = TasksContent.getItem(position);
         taskTitle.setText(task.title);
         taskDescription.setText(task.description);
+        String picPath = task.picPath;
+        Context context = getContext();
+        if(picPath != null && !picPath.isEmpty() ){
+            Drawable taskDrawable;
+
+            switch(picPath){
+                case "Drawable 2":taskDrawable = context.getDrawable(R.drawable.circle_drawable_orange);break;
+                case "Drawable 3":taskDrawable = context.getDrawable(R.drawable.circle_drawable_red);break;
+                case "Drawable 1":
+                default:
+                    taskDrawable = context.getDrawable(R.drawable.circle_drawable_green);
+            }
+            taskImage.setImageDrawable(taskDrawable);
+        }
+        else
+        {
+            taskImage.setImageDrawable(context.getDrawable(R.drawable.circle_drawable_green));
+        }
+
     }
 }

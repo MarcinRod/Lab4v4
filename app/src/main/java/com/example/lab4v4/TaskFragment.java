@@ -16,19 +16,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.lab4v4.dummy.TasksContent;
+import com.google.android.material.snackbar.BaseTransientBottomBar;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
 /**
  * A fragment representing a list of Items.
  */
-public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.InputEventsListener {
+public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.InputEventsListener, DeleteDialog.OnDeleteDialogInteractionListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
-    private int mColumnCount = 2;
+    private int mColumnCount = 1;
     MyTaskRecyclerViewAdapter myTaskRecyclerViewAdapter;
+    private int currentItemPosition = -1;
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -60,13 +63,14 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
         Bundle arguments = getArguments();
-        if(arguments!= null){
+        /*if(arguments!= null){
             if(arguments.containsKey(getString(R.string.taskTitleKey))){
                 TasksContent.addItem(new TasksContent.TaskItem(String.valueOf(TasksContent.ITEMS.size()+1),
                         arguments.getString(getString(R.string.taskTitleKey)),
-                        arguments.getString(getString(R.string.taskDescriptionKey))));
+                        arguments.getString(getString(R.string.taskDescriptionKey)),
+                        arguments.getString(getString(R.string.taskDrawablKey))));
             }
-        }
+        }*/
 
         // Set the adapter
         RecyclerView recyclerView = view.findViewById(R.id.list);
@@ -91,6 +95,7 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
         return view;
 
     }
+
     public void notifyDataChange(){
         myTaskRecyclerViewAdapter.notifyDataSetChanged();
     }
@@ -103,10 +108,37 @@ public class TaskFragment extends Fragment implements MyTaskRecyclerViewAdapter.
             NavHostFragment.findNavController(TaskFragment.this)
                     .navigate(R.id.action_taskFragment_to_displayTaskFragment, bundle);
         }else{
-            FragmentManager supportFragmentManager = getActivity().getSupportFragmentManager();
-            List<Fragment> fragments = supportFragmentManager.getFragments();
-            DisplayTaskFragment fragmentById = (DisplayTaskFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.displayFragment);
+            FragmentManager childFragmentManager = getChildFragmentManager();
+
+            DisplayTaskFragment fragmentById = (DisplayTaskFragment) childFragmentManager.findFragmentById(R.id.displayFragment);
             fragmentById.displayTask(position);
         }
+    }
+
+    @Override
+    public void onLongClickEvent(int position) {
+        showDeleteDialog();
+        currentItemPosition  = position;
+    }
+    public void showDeleteDialog(){
+        DeleteDialog.newInstance(this).show(getParentFragmentManager(),"deleteDialogTag");
+    }
+
+    @Override
+    public void onDialogPositiveClick() {
+        if(currentItemPosition != -1 && currentItemPosition < TasksContent.ITEMS.size()){
+            TasksContent.removeItem(currentItemPosition);
+            notifyDataChange();
+        }
+    }
+
+    @Override
+    public void onDialogNegativeClick() {
+        Snackbar.make(getActivity().findViewById(R.id.mainFragment),"Cancel delete?", BaseTransientBottomBar.LENGTH_LONG).setAction("retry?", new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDeleteDialog();
+            }
+        }).show();
     }
 }

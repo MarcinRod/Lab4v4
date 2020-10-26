@@ -7,4 +7,6 @@
     <string name="taskPositionKey">taskPosition</string>
     <string name="taskTitleKey">taskTitle</string>
     <string name="taskDescriptionKey">taskDecription</string>
+    <string name="taskDrawablKey">taskDrawable</string>
+    <string name="delete_question">Delete task?</string>
 </resources>

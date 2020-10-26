@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Spinner;
+
+import com.example.lab4v4.dummy.TasksContent;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -54,6 +57,7 @@ public class AddTaskFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 String title = ((EditText) view.findViewById(R.id.task_title)).getText().toString();
                 String description = ((EditText) view.findViewById(R.id.task_description)).getText().toString();
+                String drawable = ((Spinner)view.findViewById(R.id.choseDrawable)).getSelectedItem().toString();
                 if(title.isEmpty())
                     title = "Task";
                 if(description.isEmpty())
@@ -62,8 +66,13 @@ public class AddTaskFragment extends Fragment {
                         title);
                 bundle.putString(getString(R.string.taskDescriptionKey),
                         description);
+                bundle.putString(getString(R.string.taskDrawablKey),drawable);
+                TasksContent.addItem(new TasksContent.TaskItem(String.valueOf(TasksContent.ITEMS.size()+1),
+                        title,
+                        description,
+                        drawable));
                 NavHostFragment.findNavController(AddTaskFragment.this)
-                        .navigate(R.id.action_addTaskFragment_to_taskFragment,bundle);
+                        .navigate(R.id.action_addTaskFragment_to_taskFragment);
                /* AddTaskFragmentDirections.ActionAddTaskFragmentToTaskFragment addTaskAction = AddTaskFragmentDirections.actionAddTaskFragmentToTaskFragment();
                 addTaskAction.setValidTaskArg(true);
                 addTaskAction.setTitleArg(title);
