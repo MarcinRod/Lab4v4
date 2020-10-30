@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="drawableArray">
-        <item>Drawable 1</item>
-        <item>Drawable 2</item>
-        <item>Drawable 3</item>
+        <item>avatar 1</item>
+        <item>avatar 2</item>
+        <item>avatar 3</item>
+        <item>avatar 4</item>
+        <item>avatar 5</item>
+        <item>photo</item>
     </string-array>
-
+<string-array name="ringtones">
+    <item>ringtone 1</item>
+    <item>ringtone 2</item>
+    <item>ringtone 3</item>
+</string-array>
 </resources>

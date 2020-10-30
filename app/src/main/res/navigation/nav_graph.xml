@@ -7,22 +7,24 @@
 
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.example.lab4v4.AddTaskFragment"
+        android:name="com.example.lab4v4.AddContactFragment"
         android:label="fragment_add_task"
-        tools:layout="@layout/fragment_add_task" >
+        tools:layout="@layout/fragment_add_contact" >
         <action
             android:id="@+id/action_addTaskFragment_to_taskFragment"
-            app:destination="@id/taskFragment" />
+            app:destination="@id/taskFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/taskFragment" />
     </fragment>
     <fragment
         android:id="@+id/displayTaskFragment"
-        android:name="com.example.lab4v4.DisplayTaskFragment"
+        android:name="com.example.lab4v4.DisplayContactFragment"
         android:label="fragment_display_task"
-        tools:layout="@layout/fragment_display_task" >
+        tools:layout="@layout/fragment_display_contact" >
     </fragment>
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.example.lab4v4.TaskFragment"
+        android:name="com.example.lab4v4.ContactFragment"
         android:label="fragment_item_list"
         tools:layout="@layout/fragment_item_list" >
         <action
@@ -30,6 +32,8 @@
             app:destination="@id/addTaskFragment" />
         <action
             android:id="@+id/action_taskFragment_to_displayTaskFragment"
-            app:destination="@id/displayTaskFragment" />
+            app:destination="@id/displayTaskFragment"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/taskFragment" />
     </fragment>
 </navigation>

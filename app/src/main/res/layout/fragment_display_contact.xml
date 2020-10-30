@@ -5,11 +5,11 @@
     android:id="@+id/displayLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayTaskFragment">
+    tools:context=".DisplayContactFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:id="@+id/dispTaskTitle"
+        android:id="@+id/dispContactName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -21,21 +21,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/dispTaskDescription"
+        android:id="@+id/dispPhoneNumber"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
         android:text="Description"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/taskImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/contactImageView" />
 
     <ImageView
-        android:id="@+id/taskImageView"
+        android:id="@+id/contactImageView"
         android:layout_width="0dp"
         android:layout_height="100dp"
         android:layout_marginStart="16dp"
@@ -45,6 +43,18 @@
         android:src="@drawable/circle_drawable_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dispTaskTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/dispContactName" />
+
+    <TextView
+        android:id="@+id/dispRingtone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dispPhoneNumber" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/store_shared_menu"
+        android:title="store SharedPreferences" />
+    <item
+        android:id="@+id/restore_shared_menu"
+        android:title="restore SharedPreferences" />
+    <item
+        android:id="@+id/store_text_menu"
+        android:title="store text file" />
+    <item
+        android:id="@+id/restore_text_menu"
+        android:title="restore text file" />
+    <item
+        android:id="@+id/store_json_menu"
+        android:title="store JSON  file" />
+    <item
+        android:id="@+id/restore_json_menu"
+        android:title="restore JSON  file" />
+    <item
+        android:id="@+id/clear_list"
+        android:title="Clear list" />
+</menu>

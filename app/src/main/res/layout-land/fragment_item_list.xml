@@ -5,11 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskFragment">
+    tools:context=".ContactFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/list"
-        android:name="com.example.lab4v4.TaskFragment"
+        android:name="com.example.lab4v4.ContactFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
@@ -26,7 +26,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/displayFragment"
-        android:name="com.example.lab4v4.DisplayTaskFragment"
+        android:name="com.example.lab4v4.DisplayContactFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_marginTop="16dp"
